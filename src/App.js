@@ -24,7 +24,16 @@ class App extends React.Component {
     console.log("items:", this.state.items);
 
   }
-  
+  // delete 함수 추가 (alt+shift+f 포맷팅)
+  delete = (item) => {
+    const thisItems = this.state.items;
+    const newItems = thisItems.filter(e => e.id !== item.id);
+    this.setState({ items: newItems }, () => {
+      //디버깅 콜백
+      console.log("Update Items : ", this.state.items)
+    });
+  }
+
   render() {
     // todoItems에 this.state.items.length 가 0보다 크다면 true 이므로 && 뒤에 값을 넘겨준다.
     // totoItem = this.state.items.length > 0 ? (<Paper></Paper>):"";  이렇게 해도 같은 결과이다. 조건선택문 ? ternary operator
@@ -39,7 +48,7 @@ class App extends React.Component {
 
     );
 
-    // (2) add 함수 연결 
+    // 생성된 컴포넌트 JSX를 리턴한다.
     return (
       <div className="App">
         <Container maxWidth="md">
